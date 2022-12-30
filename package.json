@@ -1,11 +1,12 @@
 {
   "name": "shayanatm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Atm in cli By Shayan.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,6 @@
   },
   "dependencies": {
     "inquirer": "^9.1.4"
-  }
+  },
+  "files": ["lib/**/*"]
 }

@@ -10,7 +10,7 @@ Has withdraw, deposite functionality
 ## Setup
 Want to use just type below command.
 ```bash
-npx shayanATM
+npx shayanatm
 ```
 
 # Packages Used
