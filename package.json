@@ -1,0 +1,33 @@
+{
+  "name": "shayanatm",
+  "version": "1.0.0",
+  "description": "Atm in cli By Shayan.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShayanAhmed-0/ATMcli.git"
+  },
+  "keywords": [
+    "ATM",
+    "cli ATM",
+    "ATM in typescript",
+    "shayanATM"
+  ],
+  "author": "Shayan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShayanAhmed-0/ATMcli/issues"
+  },
+  "homepage": "https://github.com/ShayanAhmed-0/ATMcli#readme",
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  }
+}
