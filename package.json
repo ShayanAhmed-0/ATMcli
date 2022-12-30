@@ -1,8 +1,9 @@
 {
   "name": "shayanatm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Atm in cli By Shayan.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -31,5 +32,6 @@
   "dependencies": {
     "inquirer": "^9.1.4"
   },
-  "files": ["lib/**/*"]
+  "files": ["lib/**/*"],
+  "bin": "./lib/index.js"
 }
