@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import inquirer from 'inquirer';
 
 var Balance=Math.ceil(Math.random()*10000)
