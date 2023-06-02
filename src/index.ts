@@ -56,7 +56,7 @@ const withdraw = () => {
   if (amount > 0 && amount <= balance) {
     if (!isVowel(username)) {
       amount += 500;
-      console.log("Extra $100 charged for non-vowel user.");
+      console.log("Extra $500 charged for non-vowel user.");
     }
     balance -= amount;
     console.log("Amount withdrawn: ", amount);
@@ -73,7 +73,7 @@ const deposit = () => {
     console.log("Your New Balance is: ", balance);
     if (amount >= 5000) {
       balance += 1000;
-      console.log("Congratulations! You have been rewarded $500 for depositing a large amount.");
+      console.log("Congratulations! You have been rewarded $1000 for depositing a large amount.");
       console.log("Your New Balance (including reward): ", balance);
     }
   } else {
