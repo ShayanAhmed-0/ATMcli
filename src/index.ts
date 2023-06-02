@@ -2,104 +2,120 @@
 
 import inquirer from 'inquirer';
 
-var Balance = Math.ceil(Math.random() * 10000)
-let Username: string;
-let Password: string;
-let Options: string;
-let Amount: number;
-let condition: boolean = true;
+let balance = Math.ceil(Math.random() * 10000);
+let username: string;
+let password: string;
+let options: string;
+let amount: number;
+let condition = true;
 
-const Login = async () => {
-  let LoginQuestions = await inquirer.prompt([
+const login = async () => {
+  const loginQuestions = await inquirer.prompt([
     {
-      name: "Username",
-      type: "string",
+      name: "username",
+      type: "input",
       message: "Enter User Name: ",
     },
     {
-      name: "Password",
+      name: "password",
       type: "password",
       message: "Enter Password: ",
     },
   ]);
-  Username = LoginQuestions.Username
-  Password = LoginQuestions.Password
-}
 
-const Opt = async () => {
-  let Selection = await inquirer.prompt(
-    {
-      name: "Options",
-      type: "list",
-      message: "Select",
-      choices: ["Withdraw", "Deposit", "About", "Exit"],
-    }
-  )
-  Options = Selection.Options;
-}
+  username = loginQuestions.username;
+  password = loginQuestions.password;
+};
+
+const selectOption = async () => {
+  const selection = await inquirer.prompt({
+    name: "option",
+    type: "list",
+    message: "Select",
+    choices: ["Withdraw", "Deposit", "About", "Exit"],
+  });
+
+  options = selection.option;
+};
 
 const takeAmount = async () => {
-  let givenAmount = await inquirer.prompt({
+  const givenAmount = await inquirer.prompt({
     name: "enteredAmount",
     type: "input",
     message: "Enter Amount: ",
-    validate: function (input: string) {
+    validate: (input: string) => {
       const isValid = /^\d+$/.test(input); // Check if input contains only digits
       return isValid ? true : "Please enter a valid numeric amount";
     },
   });
-  Amount = parseInt(givenAmount.enteredAmount);
-}
 
-const Withdraw = (Amount: number): void => {
-  if (Amount > 0 && Amount <= Balance) {
-    Balance -= Amount;
-    console.log("Amount withdrawn: ", Amount);
-    console.log("Your New Balance is: ", Balance);
+  amount = parseInt(givenAmount.enteredAmount);
+};
+
+const withdraw = () => {
+  if (amount > 0 && amount <= balance) {
+    if (!isVowel(username)) {
+      amount += 500;
+      console.log("Extra $100 charged for non-vowel user.");
+    }
+    balance -= amount;
+    console.log("Amount withdrawn: ", amount);
+    console.log("Your New Balance is: ", balance);
   } else {
     console.log("Invalid amount");
   }
-}
+};
 
-const Deposit = (Amount: number): void => {
-  if (Amount > 0) {
-    Balance += Amount;
-    console.log("Amount Deposited: ", Amount);
-    console.log("Your New Balance is: ", Balance);
+const deposit = () => {
+  if (amount > 0) {
+    balance += amount;
+    console.log("Amount Deposited: ", amount);
+    console.log("Your New Balance is: ", balance);
+    if (amount >= 5000) {
+      balance += 1000;
+      console.log("Congratulations! You have been rewarded $500 for depositing a large amount.");
+      console.log("Your New Balance (including reward): ", balance);
+    }
   } else {
     console.log("Invalid amount");
   }
-}
+};
 
-const func = async () => {
+const isVowel = (character: string): boolean => {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  return vowels.includes(character.toLowerCase());
+};
+
+const runATM = async () => {
   while (true) {
-    await Login();
-    if (Username == "admin" && Password == "admin") {
+    await login();
+    if (password === "admin") {
       break;
     } else {
-      console.log("Wrong UserName OR Password")
+      console.log("Wrong UserName OR Password");
     }
   }
-  console.log("WELCOME TO SHAYAN ATM")
-  console.log("Enter admin as Username & Password")
+
+  console.log("WELCOME TO SHAYAN ATM");
 
   while (condition) {
-    await Opt();
+    await selectOption();
 
-    switch (Options) {
+    switch (options) {
       case "Withdraw":
+        console.log("Your Current Account Balance is: ", balance);
         await takeAmount();
-        Withdraw(Amount);
+        withdraw();
         break;
 
       case "Deposit":
         await takeAmount();
-        Deposit(Amount);
+        deposit();
         break;
 
       case "About":
-        console.log("Your Name: ", Username)
-        console.log("Your Account Balance: ", Balance)
+        console.log("Your Name: ", username);
+        console.log("Your Account Balance: ", balance);
         break;
 
       case "Exit":
@@ -110,6 +126,6 @@ const func = async () => {
         break;
     }
   }
-}
+};
 
-func();
+runATM();
