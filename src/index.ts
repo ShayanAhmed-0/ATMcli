@@ -81,9 +81,15 @@ const deposit = () => {
   }
 };
 
-const isVowel = (character: string): boolean => {
+const isVowel = (input: string): boolean => {
   const vowels = ['a', 'e', 'i', 'o', 'u'];
-  return vowels.includes(character.toLowerCase());
+  for (let i = 0; i < input.length; i++) {
+    const character = input[i].toLowerCase();
+    if (vowels.includes(character)) {
+      return true;
+    }
+  }
+  return false;
 };
 
 const runATM = async () => {
@@ -96,7 +102,7 @@ const runATM = async () => {
     }
   }
 
-  console.log("WELCOME TO SHAYAN ATM");
+  console.log("WELCOME TO Cashmatic ATM");
 
   while (condition) {
     await selectOption();
